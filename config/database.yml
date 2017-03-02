@@ -1,0 +1,23 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8
+  pool: 5
+  host: localhost
+
+development:
+  <<: *default
+  database: ebisu_dev
+  username: ebisu_dev
+  password: ebisu_dev
+
+production:
+  <<: *default
+  database: ebisu
+  username: ebisu
+  password: ebisu
+
+test:
+  <<: *default
+  database: ebisu_test
+  username: ebisu_test
+  password: ebisu_test

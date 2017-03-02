@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id_hash: MyString
+  name: 
+  post_number: MyString
+  address: MyString
+  phone_number: MyString
+  sex_bit: 
+  child_bit: 
+  invite_message: MyText
+  host_bit: 
+  tomo_message: MyText
+  eri_message: MyText
+  attend_bit: 
+  guest_message: MyText
+
+two:
+  id_hash: MyString
+  name: 
+  post_number: MyString
+  address: MyString
+  phone_number: MyString
+  sex_bit: 
+  child_bit: 
+  invite_message: MyText
+  host_bit: 
+  tomo_message: MyText
+  eri_message: MyText
+  attend_bit: 
+  guest_message: MyText
