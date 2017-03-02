@@ -1,4 +1,6 @@
 class GuestsController < ApplicationController
+
+  before_action :basic
   before_action :set_guest, only: [:show, :edit, :update, :destroy]
 
   # GET /guests
@@ -70,5 +72,11 @@ class GuestsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def guest_params
       params.require(:guest).permit(:id_hash, :name, :post_number, :address, :phone_number, :sex_bit, :child_bit, :invite_message, :host_bit, :tomo_message, :eri_message, :attend_bit, :guest_message)
+    end
+
+    def basic
+      authenticate_or_request_with_http_basic do |user, pass|
+        user == Rails.application.secrets.basic_auth_user && pass == Rails.application.secrets.basic_auth_pass
+      end
     end
 end
