@@ -1,5 +1,7 @@
 class GuestsController < ApplicationController
 
+  require "digest/md5"
+
   before_action :basic
   before_action :set_guest, only: [:show, :edit, :update, :destroy]
 
@@ -27,11 +29,12 @@ class GuestsController < ApplicationController
   # POST /guests.json
   def create
     @guest = Guest.new(guest_params)
+    @guest.id_hash = Digest::MD5.hexdigest('tomo' + guest_params[:name] + 'eri')
 
     respond_to do |format|
       if @guest.save
-        format.html { redirect_to @guest, notice: 'Guest was successfully created.' }
-        format.json { render :show, status: :created, location: @guest }
+        format.html { redirect_to :guests, notice: "#{@guest.name}様を追加しました。" }
+        format.json { render :index, status: :ok }
       else
         format.html { render :new }
         format.json { render json: @guest.errors, status: :unprocessable_entity }
@@ -44,8 +47,8 @@ class GuestsController < ApplicationController
   def update
     respond_to do |format|
       if @guest.update(guest_params)
-        format.html { redirect_to @guest, notice: 'Guest was successfully updated.' }
-        format.json { render :show, status: :ok, location: @guest }
+        format.html { redirect_to :guests, notice: "#{@guest.name}様を更新しました。" }
+        format.json { render :index, status: :ok }
       else
         format.html { render :edit }
         format.json { render json: @guest.errors, status: :unprocessable_entity }
@@ -71,7 +74,7 @@ class GuestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def guest_params
-      params.require(:guest).permit(:id_hash, :name, :post_number, :address, :phone_number, :sex_bit, :child_bit, :invite_message, :host_bit, :tomo_message, :eri_message, :attend_bit, :guest_message)
+      params.require(:guest).permit(:name, :post_number, :address, :phone_number, :sex_bit, :child_bit, :invite_message, :host_bit, :tomo_message, :eri_message)
     end
 
     def basic

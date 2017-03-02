@@ -11,72 +11,51 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :id_hash %>
-    <%= f.text_field :id_hash %>
-  </div>
-
-  <div class="field">
-    <%= f.label :name %>
+  <div class="field" style="display:inline-flex">
+  <%= f.label :name, '名前' %>
     <%= f.text_field :name %>
+    <%= f.check_box :child_bit, {}, 1, 0 %><%= f.label :child_bit, '子ども' %>
+  </div>
+  <br />
+  <div class="field" style="display:inline-flex">
+    <%= f.radio_button :sex_bit, 1 %><%= f.label 'sex_bit_1', '男' %>
+    <%= f.radio_button :sex_bit, 0 %><%= f.label 'sex_bit_0', '女' %>
   </div>
 
   <div class="field">
-    <%= f.label :post_number %>
-    <%= f.text_field :post_number %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address %>
+    <%= f.label :post_number, '住所' %>
+    〒<%= f.text_field :post_number %>
+    <br />
     <%= f.text_field :address %>
   </div>
 
   <div class="field">
-    <%= f.label :phone_number %>
+    <%= f.label :phone_number, '電話番号' %>
     <%= f.text_field :phone_number %>
   </div>
 
   <div class="field">
-    <%= f.label :sex_bit %>
-    <%= f.text_field :sex_bit %>
-  </div>
-
-  <div class="field">
-    <%= f.label :child_bit %>
-    <%= f.text_field :child_bit %>
-  </div>
-
-  <div class="field">
-    <%= f.label :invite_message %>
+    <%= f.label :invite_message, '招待メッセージ' %>
     <%= f.text_area :invite_message %>
   </div>
 
-  <div class="field">
-    <%= f.label :host_bit %>
-    <%= f.text_field :host_bit %>
+  招待側<br />
+  <div class="field" style="display:inline-flex">
+    <%= f.radio_button :host_bit, 1 %><%= f.label 'host_bit_1', 'ともあき' %>
+    <%= f.radio_button :host_bit, 0 %><%= f.label 'host_bit_0', 'えりこ' %>
   </div>
 
   <div class="field">
-    <%= f.label :tomo_message %>
+    <%= f.label :tomo_message, 'ともあきからのメッセージ' %>
     <%= f.text_area :tomo_message %>
   </div>
 
   <div class="field">
-    <%= f.label :eri_message %>
+    <%= f.label :eri_message, 'えりこからのメッセージ' %>
     <%= f.text_area :eri_message %>
   </div>
 
-  <div class="field">
-    <%= f.label :attend_bit %>
-    <%= f.text_field :attend_bit %>
-  </div>
-
-  <div class="field">
-    <%= f.label :guest_message %>
-    <%= f.text_area :guest_message %>
-  </div>
-
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit '追加する' %>
   </div>
 <% end %>
