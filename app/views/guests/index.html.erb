@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>Id hash</th>
+      <th>リンク</th>
       <th>出欠</th>
       <th>名前</th>
       <th>住所</th>
@@ -22,7 +22,7 @@
   <tbody>
     <% @guests.each do |guest| %>
       <tr>
-        <td><%= guest.id_hash %></td>
+        <td><%= link_to 'ゲストページ', "/invitations/#{guest.id_hash}" %></td>
         <td>
           <%= case guest.attend_bit
               when 0 then '欠'
