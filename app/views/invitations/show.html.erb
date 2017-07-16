@@ -3,11 +3,30 @@
 <h2>ともからのメッセージ：<%= @guest.tomo_message %></h2>
 <h2>えりからのメッセージ：<%= @guest.eri_message %></h2>
 <br>
-<h1>平成２９年１０月２８日（土）</h1>
-<h1>11時頃～</h1>
-<h1>＠QED</h1>
+<h1>平成29年10月28日(土) 10時半～</h1>
+<h1><a href=http://www.qed.co.jp/restaurant/ target='_blank'>Q.E.D. CLUB</a></h1>
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.332004525976!2d139.70181031525783!3d35.64419098020287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b47097bd67d%3A0xf8a180a066f62e5d!2sQ.E.D.CLUB!5e0!3m2!1sja!2sjp!4v1500219085304" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 <br>
 <br>
 
 
 <h1>下のフォームから、出欠席とメッセージを送信してね！</h1>
+
+
+<%= form_tag('reply', method: "post") do %>
+
+  <%= hidden_field_tag 'id_hash', params[:id_hash] %>
+
+  <div class="field" style="display:inline-flex">
+    <%= radio_button_tag :attend_bit, 1 %><%= label_tag 'attend_bit_1', '参加します' %>
+    <%= radio_button_tag :attend_bit, 0 %><%= label_tag 'attend_bit_0', '参加しません' %>
+  </div>
+
+  <div class="field">
+    <%= label_tag :guest_message, 'メッセージ' %>
+    <%= text_area_tag :guest_message %>
+  </div>
+
+  <%= submit_tag("返信する", class: 'btn btn-success') %>
+<% end %>
+
