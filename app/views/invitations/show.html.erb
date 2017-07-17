@@ -10,16 +10,26 @@
 <br>
 
 
-<h1>下のフォームから、出欠席とメッセージを送信してね！</h1>
+<% if @guest.attend_bit.nil? %>
 
+  <h1>下のフォームから、出欠席とメッセージを送信してね！</h1>
 
-<%= form_tag('reply', method: "post") do %>
+<% else %>
+
+  <h2>・出欠席：<%= @guest.attend_bit ? "出席" : "欠席" %></h2>
+  <h2>・メッセージ：<%= @guest.guest_message %></h2>
+  <h2>で返信済です。</h2>
+  <h2>変更する場合は、以下のフォームから改めてどうぞ！</h2>
+
+<% end %>
+
+<%= form_tag("/invitations/#{@guest.id_hash}/reply", method: "post") do %>
 
   <%= hidden_field_tag 'id_hash', params[:id_hash] %>
 
   <div class="field" style="display:inline-flex">
-    <%= radio_button_tag :attend_bit, 1 %><%= label_tag 'attend_bit_1', '参加します' %>
-    <%= radio_button_tag :attend_bit, 0 %><%= label_tag 'attend_bit_0', '参加しません' %>
+    <%= radio_button_tag :attend_bit, 1, @guest.attend_bit? %><%= label_tag 'attend_bit_1', '参加します' %>
+    <%= radio_button_tag :attend_bit, 0, !@guest.attend_bit? %><%= label_tag 'attend_bit_0', '参加しません' %>
   </div>
 
   <div class="field">

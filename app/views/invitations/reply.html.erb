@@ -1,0 +1,7 @@
+<h1><%= @guest.name %>様</h1>
+<h2>出欠席：<%= @guest.attend_bit ? "出席" : "欠席" %></h2>
+<h2>メッセージ：<%= @guest.guest_message %></h2>
+<br>
+<h1>で返信を受け付けました。ありがとうございました。</h1>
+
+<%= link_to '戻る', "/invitations/#{@guest.id_hash}" %>
