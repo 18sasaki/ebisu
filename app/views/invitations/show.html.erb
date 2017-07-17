@@ -25,11 +25,15 @@
 
 <%= form_tag("/invitations/#{@guest.id_hash}/reply", method: "post") do %>
 
+  <% if @guest.errors.any? %>
+    <div style='color:#ff0000'>出欠席を選択してね！</div>
+  <% end %>
+
   <%= hidden_field_tag 'id_hash', params[:id_hash] %>
 
   <div class="field" style="display:inline-flex">
-    <%= radio_button_tag :attend_bit, 1, @guest.attend_bit? %><%= label_tag 'attend_bit_1', '参加します' %>
-    <%= radio_button_tag :attend_bit, 0, !@guest.attend_bit? %><%= label_tag 'attend_bit_0', '参加しません' %>
+    <%= radio_button_tag :attend_bit, 1, @guest.attend_bit.present? %><%= label_tag 'attend_bit_1', '参加します' %>
+    <%= radio_button_tag :attend_bit, 0, !@guest.attend_bit.nil? && !@guest.attend_bit.present? %><%= label_tag 'attend_bit_0', '参加しません' %>
   </div>
 
   <div class="field">
