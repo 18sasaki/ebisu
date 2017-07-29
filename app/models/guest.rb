@@ -1,3 +1,3 @@
 class Guest < ApplicationRecord
-	validates :attend_bit, presence: true, on: :by_guest
+	validates :attend_bit, inclusion: { in: [true, false] }, on: :by_guest
 end
