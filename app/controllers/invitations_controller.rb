@@ -15,7 +15,7 @@ class InvitationsController < ApplicationController
         format.html { render :reply, notice: "返信ありがとう！！" }
         format.json { render :reply, status: :ok }
       else
-        format.html { render :show }
+        format.html { render :show_2 }
         format.json { render json: @guest.errors, status: :unprocessable_entity }
       end
     end

@@ -30,7 +30,7 @@
                 <div class="pPhoto" style="background-image:url(/images/752.png)"></div>
               </div>
               <h3 class="name">Touma Tomoaki</h3>
-              <h3 class="name"><%= raw(@guest.tomo_message) %></h3>
+              <%= raw(@guest.tomo_message) %>
             </section>
           </li>
           <li>
@@ -39,7 +39,7 @@
                 <div class="pPhoto" style="background-image:url(/images/753.png)"></div>
               </div>
               <h3 class="name">Touma Eriko</h3>
-              <h3 class="name"><%= raw(@guest.eri_message) %></h3>
+              <%= raw(@guest.eri_message) %>
             </section>
           </li>
         </ul>
@@ -81,16 +81,59 @@
         <div class="invForm-inner">
           <div class="frame">
             <section>
-              <p>
-                郵送でのご案内状に代わり当招待状をお送りしております。お手数ではございますが出席情報のご登録をお願い申し上げます。<br />
-                <br />
-                ※ご登録情報はお名前、メールアドレス、出欠以外はご記入不要です。<br />
-                <br />
-                <br />
-                また当日のお食事のご用意にあたりアレルギー等がある方はメッセージ欄にご記入くださいますようお願い申し上げます。
-              </p>
+
+              <% if @guest.attend_bit.nil? %>
+                <p>
+                  お手数ですが出席情報のご登録をお願い申し上げます。<br />
+                  当日のお食事のご用意にあたりアレルギー等がある方はメッセージ欄にご記入くださいますようお願い申し上げます。
+                </p>
+              <% else %>
+                <p>
+                  ・出欠席：<%= @guest.attend_bit ? "出席" : "欠席" %><br />
+                  ・メッセージ：<%= @guest.guest_message %><br />
+                  で登録されています。<br />
+                  変更も可能です。
+                </p>
+              <% end %>
+              
               <div class="form">
-                <form method="post" action="/Ok0mWwS1h4IHB7g4cLLhb1/welcome/form#form">
+
+                <%= form_tag("/invitations/#{@guest.id_hash}/reply", method: "post") do %>
+
+                  <% if @guest.errors.any? %>
+                    <div style='color:#ff0000'>出欠席を選択してね！</div>
+                  <% end %>
+
+                  <%= hidden_field_tag 'id_hash', params[:id_hash] %>
+
+                  <fieldset>
+                    <dl>
+                      <dt><label for="attend_bit">ご出欠</label></dt>
+                      <dd>
+                        <div class="selectFrame">
+                          <select name="attend_bit" id="attend_bit">
+                            <option selected="selected">選択してください</option>
+                            <option id="attend_bit_1" value="1">出席 / Attend</option>
+                            <option id="attend_bit_0" value="0">欠席 / Decline</option>
+                          </select>
+                        </div>
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt>
+                        <label for="guest_message">メッセージ</label>
+                      </dt>
+                      <dd>
+                        <textarea name="guest_message" id="guest_message" cols="24" rows="4" placeholder="メッセージを自由にご入力いただけます"></textarea>
+                      </dd>
+                    </dl>
+                  </fieldset>
+                  <div class="formBtn">
+                    <button type="submit">登録</button>
+                  </div>
+                <% end %>
+
+<!--                 <form method="post" action="/Ok0mWwS1h4IHB7g4cLLhb1/welcome/form#form">
                   <input type="hidden" id="unique" value="Ok0mWwS1h4IHB7g4cLLhb1" />
                   <fieldset>
                     <dl>
@@ -156,7 +199,7 @@
                   <div class="formBtn">
                     <button type="submit">登録</button>
                   </div>
-                </form>
+                </form> -->
               </div>
             </section>
           </div>
