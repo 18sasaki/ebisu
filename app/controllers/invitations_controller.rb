@@ -2,6 +2,7 @@ class InvitationsController < ApplicationController
   def show
     @guest = Guest.find_by(id_hash: params[:id_hash])
     render file: "/public/unknown.html" unless @guest
+    render 'show_2'
   end
 
   def reply

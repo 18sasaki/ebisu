@@ -1,0 +1,173 @@
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+<div class="header">
+  <div class="inner">
+    <h1 class="logo"><%= @guest.name %> 様</h1>
+    <nav class="header_nav">
+      <ul>
+        <li><a href="#top">TOP</a></li>
+        <li><a href="#reception">RECEPTION</a></li>
+        <li><a href="#form">REPLY</a></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<div id="container">
+  <div id="main">
+    <div id="conts">
+      <section class="top">
+        <h2 class="ttl01"><span class="icon">WE ARE GETTING MARRIED!</span></h2>
+        <div class="greeting">
+          <p>この度、結婚式を執り行うこととなりました。<br />
+          <br />
+          日頃お世話になっておりますみなさまに私どもの門出をお見守りいただきたく、ささやかながら小宴をもうけさせていただきました。ご多用中誠に恐縮ではございますがぜひご出席いただきたくご案内申し上げます。</p>
+        </div>
+
+        <ul class="unitCol2">
+          <li>
+            <section>
+              <div class="img">
+                <div class="pPhoto" style="background-image:url(/images/752.png)"></div>
+              </div>
+              <h3 class="name">Touma Tomoaki</h3>
+              <h3 class="name"><%= raw(@guest.tomo_message) %></h3>
+            </section>
+          </li>
+          <li>
+            <section>
+              <div class="img">
+                <div class="pPhoto" style="background-image:url(/images/753.png)"></div>
+              </div>
+              <h3 class="name">Touma Eriko</h3>
+              <h3 class="name"><%= raw(@guest.eri_message) %></h3>
+            </section>
+          </li>
+        </ul>
+      </section>
+    
+      <section class="event" id="reception">
+        <h2 class="ttl01"><span class="icon">THE WEDDING RECEPTION</span></h2>
+        <ul class="unitCol2 event_detail">
+          <li>
+            <section class="shopdata">
+              <div class="deco">
+                <h3 class="ttl">Main Ceremony</h3>
+                <p>2017.10.28(Sat)<br><span class="time">10:30</span></p>
+              </div>
+              <p class="address">受付時間　10:00</p>
+              <p>Q.E.D CLUB<br>
+              東京都目黒区中目黒１丁目１−２９<br>
+              </p>
+              <p><a href="http://www.qed.co.jp/" target="_blank" class="url">http://www.qed.co.jp/</a></p>
+            </section>
+          </li>
+          <li>
+            <section class="shopdata">
+              <div class="deco">
+                <h3 class="ttl">Wedding Party</h3>
+                <p>2017.10.28(Sat)<br><span class="time">11:00</span></p>
+              </div>
+              <p>Q.E.D CLUB<br>
+              東京都目黒区中目黒１丁目１−２９<br>
+              </p>
+              <p><a href="http://www.qed.co.jp/" target="_blank" class="url">http://www.qed.co.jp/</a></p>
+            </section>
+          </li>
+        </ul>
+        <iframe class="center_iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.332004525976!2d139.70181031525783!3d35.64419098020287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b47097bd67d%3A0xf8a180a066f62e5d!2sQ.E.D.CLUB!5e0!3m2!1sja!2sjp!4v1500219085304" width="90%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </section>
+    
+      <div class="invForm" id="form">
+        <div class="invForm-inner">
+          <div class="frame">
+            <section>
+              <p>
+                郵送でのご案内状に代わり当招待状をお送りしております。お手数ではございますが出席情報のご登録をお願い申し上げます。<br />
+                <br />
+                ※ご登録情報はお名前、メールアドレス、出欠以外はご記入不要です。<br />
+                <br />
+                <br />
+                また当日のお食事のご用意にあたりアレルギー等がある方はメッセージ欄にご記入くださいますようお願い申し上げます。
+              </p>
+              <div class="form">
+                <form method="post" action="/Ok0mWwS1h4IHB7g4cLLhb1/welcome/form#form">
+                  <input type="hidden" id="unique" value="Ok0mWwS1h4IHB7g4cLLhb1" />
+                  <fieldset>
+                    <dl>
+                      <dt><label for="fName">お名前<br>Name</label></dt>
+                      <dd class="name">
+                        <div class="inner">
+                          <span class="input"><input type="text" name="last_name" value=""></span>
+                          <span class="input"><input type="text" name="first_name" value=""></span>
+                        </div>
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt><label for="fZip">郵便番号<br>Postcode</label></dt>
+                      <dd class="zip">
+                        <div class="inner">
+                          <span class="input"><input type="number" name="zipcode1" value=""></span>
+                          <span class="txt">-</span>
+                          <span class="input"><input type="number" name="zipcode2" value=""></span>
+                        </div>
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt><label for="fAddress">ご住所<br>Address</label></dt>
+                      <dd>
+                        <input type="text" name="address1" id="fAddress" value="">
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt><label for="fBld">建物名・部屋番号<br>Bld</label></dt>
+                      <dd>
+                        <input type="text" name="address2" id="fBld" value="">
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt><label for="fEmail">メールアドレス<br>Mail Address</label></dt>
+                      <dd>
+                        <input type="email" name="email" id="fEmail" value="">
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt>
+                        <label for="memo_allergy">アレルギー<br>Allergy</label>
+                      </dt>
+                      <dd>
+                        <textarea name="memo_allergy" cols="24" rows="4" placeholder="アレルギーの有無について自由にご入力いただけます"></textarea>
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt>
+                        <label for="fBld">メッセージ<br>Message</label>
+                      </dt>
+                      <dd>
+                        <textarea name="memo" cols="24" rows="4" placeholder="メッセージを自由にご入力いただけます"></textarea>
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt><label for="fAttending">ご出欠<br>RSVP</label></dt>
+                      <dd>
+                        <div class="selectFrame"><select name="attendance" id="fAttending"><option value="0" selected="selected">選択してください</option><option value="1">出席 / Attend</option><option value="2">欠席 / Decline</option></select></div>
+                      </dd>
+                    </dl>
+                  </fieldset>
+                  <div class="formBtn">
+                    <button type="submit">登録</button>
+                  </div>
+                </form>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <span class="pagetop"><a href="#top"><img alt="ページトップへ" src="/images/cmn_icn_pagetop.png" /></a></span>
+  <ul id="footer-links">
+    <li><a href="mailto:18sasaki@gmail.com?subject=披露宴出欠について&amp;body=ご記入ください">問い合わせ</a></li>
+  </ul>
+</div>

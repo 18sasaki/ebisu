@@ -3,12 +3,14 @@
   <head>
     <title>Ebisu</title>
     <%= csrf_meta_tags %>
+    <meta name="viewport" content="width=device-width">
+    <meta name="format-detection" content="telephone=no">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="is-login">
     <%= yield %>
   </body>
 </html>
