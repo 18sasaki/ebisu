@@ -155,7 +155,6 @@ fieldset{
 	margin-bottom: 0;
 }
 #container #main #conts .event .unitCol2 li .deco {
-	margin-bottom: 20px;
 	padding: 25px 0;
 	position: relative;
 }
@@ -175,18 +174,16 @@ fieldset{
 	bottom: 0;
 }
 #container #main #conts .event .unitCol2 li .deco .ttl {
-	margin-bottom: 20px;
 	font-size: 150%;
 	font-family: "Abril Fatface", cursive;
 }
-#container #main #conts .event .unitCol2 li .deco p {
+.time {
 	font-family: "Abril Fatface", cursive;
 	line-height: 1.5;
-}
-#container #main #conts .event .unitCol2 li .deco p .time {
 	font-size: 170%;
 }
-#container #main #conts .event .unitCol2 li .deco + p {
+#container #main #conts .event .unitCol2 li .deco p {
+	font-size: 150%;
 	line-height: 2;
 }
 #container #main #conts .event .unitCol2  li a {
@@ -263,7 +260,7 @@ margin-bottom: 60px;
 margin-bottom: 20px;
 font-size: 150%;
 }
-#container #main #conts .event .unitCol2 li .deco p .time {
+.time {
 font-size: 170%;
 }
 
@@ -439,19 +436,17 @@ font-size: 170%;
 		bottom: 0;
 	}
 	#container #main #conts .event .unitCol2 li .deco .ttl {
-		margin-bottom: 20px;
+		margin-bottom: 0px;
 		font-size: 150%;
 		font-family: "Abril Fatface", cursive;
 	}
-	#container #main #conts .event .unitCol2 li .deco p {
+	.time {
 		font-family: "Abril Fatface", cursive;
 		line-height: 1.5;
-		font-size: 130%;
-	}
-	#container #main #conts .event .unitCol2 li .deco p .time {
 		font-size: 140%;
 	}
-	#container #main #conts .event .unitCol2 li .deco + p {
+	#container #main #conts .event .unitCol2 li .deco p {
+		font-size: 150%;
 		line-height: 2;
 	}
 	#container #main #conts .event .unitCol2  li a {
