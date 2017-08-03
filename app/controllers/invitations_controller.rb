@@ -1,6 +1,12 @@
 class InvitationsController < ApplicationController
   def show
     @guest = Guest.find_by(id_hash: params[:id_hash])
+    @attend_type = case @guest.attend_bit
+                   when nil then "none"
+                   when true then "attend"
+                   when false then "absent"
+                   end
+                   p ">>>>>>>>>>>>>#{@attend_type}"
     render file: "/public/unknown.html" unless @guest
     render 'show_2'
   end

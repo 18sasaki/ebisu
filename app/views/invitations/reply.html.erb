@@ -1,7 +1,46 @@
-<h1><%= @guest.name %>様</h1>
-<h2>出欠席：<%= @guest.attend_bit ? "出席" : "欠席" %></h2>
-<h2>メッセージ：<%= @guest.guest_message %></h2>
-<br>
-<h1>で返信を受け付けました。ありがとうございました。</h1>
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+<div class="header">
+  <div class="inner">
+    <h1 class="logo"><%= @guest.name %> 様</h1>
+  </div>
+</div>
 
-<%= link_to '戻る', "/invitations/#{@guest.id_hash}" %>
+<div id="container">
+  <div id="main">
+    <div id="conts">
+      <section class="top">
+        <h2 class="ttl01"><span class="icon">Thank You!</span></h2>
+        <div class="reply">
+          <table>
+          	<tr>
+          		<td class="reply_column">
+          			出欠席 ： 
+          		</td>
+          		<td>
+			          <%= @guest.attend_bit ? "出席" : "欠席" %>
+          		</td>
+          	</tr>
+          	<tr>
+          		<td class="reply_column">
+          			メッセージ ： 
+          		</td>
+          		<td>
+			          <%= simple_format(@guest.guest_message) %>
+          		</td>
+          	</tr>
+          </table>
+          <br />
+          で返信を受け付けました。ありがとうございました。
+        </div>
+        <div class="formBtn">
+          <%= link_to (button_tag '戻る', type: 'button'), "/invitations/#{@guest.id_hash}" %>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<div class="footer">
+  <ul id="footer-links">
+    <li><a href="mailto:18sasaki@gmail.com?subject=披露宴出欠について&amp;body=ご記入ください">問い合わせ</a></li>
+  </ul>
+</div>

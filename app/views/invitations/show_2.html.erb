@@ -81,20 +81,34 @@
         <div class="invForm-inner">
           <div class="frame">
             <section>
-
-              <% if @guest.attend_bit.nil? %>
-                <p>
+              <div class="form_message">
+                <% if @attend_type == "none" %>
                   お手数ですが出席情報のご登録をお願い申し上げます。<br />
                   当日のお食事のご用意にあたりアレルギー等がある方はメッセージ欄にご記入くださいますようお願い申し上げます。
-                </p>
-              <% else %>
-                <p>
-                  ・出欠席：<%= @guest.attend_bit ? "出席" : "欠席" %><br />
-                  ・メッセージ：<%= @guest.guest_message %><br />
+                <% else %>
+                  <table>
+                    <tr>
+                      <td class="reply_column">
+                        出欠席 ： 
+                      </td>
+                      <td>
+                        <%= @attend_type == "attend" ? "出席" : "欠席" %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="reply_column">
+                        メッセージ ： 
+                      </td>
+                      <td>
+                        <%= simple_format(@guest.guest_message) %>
+                      </td>
+                    </tr>
+                  </table>
+                  <br />
                   で登録されています。<br />
                   変更も可能です。
-                </p>
-              <% end %>
+                <% end %>
+              </div>
               
               <div class="form">
 
@@ -112,9 +126,9 @@
                       <dd>
                         <div class="selectFrame">
                           <select name="attend_bit" id="attend_bit">
-                            <option selected="selected">選択してください</option>
-                            <option id="attend_bit_1" value="1">出席 / Attend</option>
-                            <option id="attend_bit_0" value="0">欠席 / Decline</option>
+                            <option <%= 'selected' if @attend_type == "none" %>>選択してください</option>
+                            <option id="attend_bit_1" value="1" <%= 'selected' if @attend_type == "attend" %>>出席 / Attend</option>
+                            <option id="attend_bit_0" value="0" <%= 'selected' if @attend_type == "absent" %>>欠席 / Decline</option>
                           </select>
                         </div>
                       </dd>
