@@ -18,9 +18,12 @@
       <section class="top">
         <h2 class="ttl01"><span class="icon">WE ARE GETTING MARRIED!</span></h2>
         <div class="greeting">
-          <p>この度、結婚式を執り行うこととなりました。<br />
-          <br />
-          日頃お世話になっておりますみなさまに私どもの門出をお見守りいただきたく、ささやかながら小宴をもうけさせていただきました。ご多用中誠に恐縮ではございますがぜひご出席いただきたくご案内申し上げます。</p>
+          <p>
+            このたび 私たちは結婚し ふたりで共に歩むこととなりました<br />
+            つきましては 日頃お世話になっている皆様にご報告をかねて ささやかな小宴をもうけました<br />
+            おいそがしい中誠に恐縮ですが<br />
+            ご出席いただきたくご案内申し上げます
+          </p>
         </div>
 
         <ul class="unitCol2">
@@ -30,7 +33,7 @@
                 <div class="pPhoto" style="background-image:url(/images/752.png)"></div>
               </div>
               <h3 class="name">Touma Tomoaki</h3>
-              <%= raw(@guest.tomo_message) %>
+              <%= simple_format(@guest.tomo_message) %>
             </section>
           </li>
           <li>
@@ -38,8 +41,8 @@
               <div class="img">
                 <div class="pPhoto" style="background-image:url(/images/753.png)"></div>
               </div>
-              <h3 class="name">Touma Eriko</h3>
-              <%= raw(@guest.eri_message) %>
+              <h3 class="name">Tanaka Eriko</h3>
+              <%= simple_format(@guest.eri_message) %>
             </section>
           </li>
         </ul>
@@ -76,7 +79,7 @@
             <section>
               <div class="form_message">
                 <% if attend_type(@guest) == "none" %>
-                  お手数ですが出席情報のご登録をお願い申し上げます。<br />
+                  お手数ですが下記より出席情報のご登録を9月23日までにお願い致します。<br />
                   当日のお食事のご用意にあたりアレルギー等がある方はメッセージ欄にご記入くださいますようお願い申し上げます。
                 <% else %>
                   <table>
@@ -106,7 +109,7 @@
                     </tr>
                   </table>
                   <br />
-                  で登録されています。<br />
+                  で登録されています。ありがとうございます。<br />
                   変更も可能です。
                 <% end %>
               </div>
@@ -116,7 +119,7 @@
                 <%= form_tag("/invitations/#{@guest.id_hash}/reply", method: "post") do %>
 
                   <% if @guest.errors.any? %>
-                    <div style='color:#ff0000'>出欠席を選択してね！</div>
+                    <div style='color:#ff0000'>出欠席を選択してください</div>
                   <% end %>
 
                   <%= hidden_field_tag 'id_hash', params[:id_hash] %>
