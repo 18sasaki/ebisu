@@ -28,6 +28,14 @@
 			          <%= simple_format(@guest.guest_message) %>
           		</td>
           	</tr>
+            <tr>
+              <td class="reply_column">
+                アレルギー ： 
+              </td>
+              <td>
+                <%= simple_format(@guest.allergy_comment) %>
+              </td>
+            </tr>
           </table>
           <br />
           で返信を受け付けました。ありがとうございました。
