@@ -139,7 +139,7 @@
                         <label for="guest_message">メッセージ</label>
                       </dt>
                       <dd>
-                        <textarea name="guest_message" id="guest_message" cols="24" rows="4" placeholder="メッセージを自由にご入力いただけます"></textarea>
+                        <textarea name="guest_message" id="guest_message" cols="24" rows="4" placeholder="メッセージを自由にご入力いただけます"><%= @guest.guest_message %></textarea>
                       </dd>
                     </dl>
                     <dl>
@@ -147,7 +147,7 @@
                         <label for="allergy_comment">アレルギー</label>
                       </dt>
                       <dd>
-                        <textarea name="allergy_comment" id="allergy_comment" cols="24" rows="4" placeholder="アレルギー等がある方はご記入ください"></textarea>
+                        <textarea name="allergy_comment" id="allergy_comment" cols="24" rows="4" placeholder="アレルギー等がある方はご記入ください"><%= @guest.allergy_comment %></textarea>
                       </dd>
                     </dl>
                   </fieldset>

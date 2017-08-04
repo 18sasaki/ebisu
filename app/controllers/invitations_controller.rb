@@ -18,6 +18,8 @@ class InvitationsController < ApplicationController
 
     respond_to do |format|
       if @guest.save(context: :by_guest)
+        p ">>>>>>>>>>>>>"
+        p @guest.attributes
         format.html { render :reply, notice: "返信ありがとう！！" }
         format.json { render :reply, status: :ok }
       else
