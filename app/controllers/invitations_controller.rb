@@ -6,7 +6,6 @@ class InvitationsController < ApplicationController
                    when true then "attend"
                    when false then "absent"
                    end
-                   p ">>>>>>>>>>>>>#{@attend_type}"
     render file: "/public/unknown.html" unless @guest
     render 'show_2'
   end
@@ -15,6 +14,7 @@ class InvitationsController < ApplicationController
     @guest = Guest.find_by(id_hash: params[:id_hash])
     @guest.attend_bit = params[:attend_bit]
     @guest.guest_message = params[:guest_message]
+    @guest.allergy_comment = params[:allergy_comment]
 
     respond_to do |format|
       if @guest.save(context: :by_guest)
