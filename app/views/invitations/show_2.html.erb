@@ -75,7 +75,7 @@
           <div class="frame">
             <section>
               <div class="form_message">
-                <% if @attend_type == "none" %>
+                <% if attend_type(@guest) == "none" %>
                   お手数ですが出席情報のご登録をお願い申し上げます。<br />
                   当日のお食事のご用意にあたりアレルギー等がある方はメッセージ欄にご記入くださいますようお願い申し上げます。
                 <% else %>
@@ -85,7 +85,7 @@
                         出欠席 ： 
                       </td>
                       <td>
-                        <%= @attend_type == "attend" ? "出席" : "欠席" %>
+                        <%= attend_type(@guest) == "attend" ? "出席" : "欠席" %>
                       </td>
                     </tr>
                     <tr>
@@ -127,9 +127,9 @@
                       <dd>
                         <div class="selectFrame">
                           <select name="attend_bit" id="attend_bit">
-                            <option <%= 'selected' if @attend_type == "none" %>>選択してください</option>
-                            <option id="attend_bit_1" value="1" <%= 'selected' if @attend_type == "attend" %>>出席 / Attend</option>
-                            <option id="attend_bit_0" value="0" <%= 'selected' if @attend_type == "absent" %>>欠席 / Decline</option>
+                            <option <%= 'selected' if attend_type(@guest) == "none" %>>選択してください</option>
+                            <option id="attend_bit_1" value="1" <%= 'selected' if attend_type(@guest) == "attend" %>>出席 / Attend</option>
+                            <option id="attend_bit_0" value="0" <%= 'selected' if attend_type(@guest) == "absent" %>>欠席 / Decline</option>
                           </select>
                         </div>
                       </dd>

@@ -1,50 +1,85 @@
+<script type="text/javascript">
+  jQuery(function($){
+    $('#select input').each(function(i){
+        i = i + 1;
+         var $check = '';
+        
+        $(this).change(function(){
+            if ($(this).is(':checked')) {
+                $('.col'+i).show();
+            } else {
+                $('.col'+i).hide();
+            }
+        });
+        
+    });
+  });
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <h1>招待客一覧</h1>
 
-<table>
+<div id="select">
+  <label><input type="checkbox" disabled checked></label>
+  <label><input type="checkbox" checked>出欠</label>
+  <label><input type="checkbox" disabled checked>名前</label>
+  <label><input type="checkbox" >住所</label>
+  <label><input type="checkbox" >電話番号</label>
+  <label><input type="checkbox" checked>招待メッセージ</label>
+  <label><input type="checkbox" >区分</label>
+  <label><input type="checkbox" checked>ともメッセージ</label>
+  <label><input type="checkbox" checked>えりメッセージ</label>
+  <label><input type="checkbox" checked>ゲストからのメッセージ</label>
+  <label><input type="checkbox" checked>アレルギー</label>
+  <label><input type="checkbox" >操作</label>
+</div>
+
+<table id="result" border=1>
   <thead>
     <tr>
-      <th>リンク</th>
-      <th>出欠</th>
-      <th>名前</th>
-      <th>住所</th>
-      <th>電話番号</th>
-      <th>招待メッセージ</th>
-      <th>区分</th>
-      <th>ともメッセージ</th>
-      <th>えりメッセージ</th>
-      <th>ゲストからのメッセージ</th>
-      <th colspan="3">操作</th>
+      <th class='col1' hidden></th>
+      <th class='col2'>出欠</th>
+      <th class='col3'>名前</th>
+      <th class='col4' hidden>住所</th>
+      <th class='col5' hidden>電話番号</th>
+      <th class='col6'>招待メッセージ</th>
+      <th class='col7' hidden>区分</th>
+      <th class='col8'>ともメッセージ</th>
+      <th class='col9'>えりメッセージ</th>
+      <th class='col10'>ゲストからのメッセージ</th>
+      <th class='col11'>アレルギー</th>
+      <th class='col12' colspan="3" hidden>操作</th>
     </tr>
   </thead>
 
   <tbody>
     <% @guests.each do |guest| %>
-      <tr>
-        <td><%= link_to 'ゲストページ', "/invitations/#{guest.id_hash}" %></td>
-        <td>
-          <%= case guest.attend_bit
-              when false then '欠'
-              when true  then '出'
-              else        '--'
+      <tr bgcolor=<%= '#ff0000' if attend_type(guest) == 'none' %>>
+        <td class='col1' hidden></td>
+        <td class='col2' align='center'>
+          <%= case attend_type(guest)
+              when 'attend' then '出'
+              when 'absent' then '欠'
+              when 'none' then '--'
               end
           %>
         </td>
-        <td>
-          <font color=<%= guest.sex_bit ? '#000000' : '#ff0000' %>><%= guest.name %></font>
+        <td class='col3'>
+          <%= link_to guest.name, "/invitations/#{guest.id_hash}" %>
           <%= guest.child_bit ? '※' : '' %>
         </td>
-        <td>〒<%= guest.post_number %><br /><%= guest.address %></td>
-        <td><%= guest.phone_number %></td>
-        <td><%= guest.invite_message %></td>
-        <td><%= guest.host_bit ? 'とも' : 'えり' %></td>
-        <td><%= guest.tomo_message %></td>
-        <td><%= guest.eri_message %></td>
-        <td><%= guest.guest_message %></td>
-        <td><%= link_to '見', guest %></td>
-        <td><%= link_to '編', edit_guest_path(guest) %></td>
-        <td><%= link_to '削', guest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class='col4' hidden>〒<%= guest.post_number %><br /><%= guest.address %></td>
+        <td class='col5' hidden><%= guest.phone_number %></td>
+        <td class='col6'><%= simple_format(guest.invite_message) %></td>
+        <td class='col7' hidden><%= guest.host_bit ? 'とも' : 'えり' %></td>
+        <td class='col8'><%= simple_format(guest.tomo_message) %></td>
+        <td class='col9'><%= simple_format(guest.eri_message) %></td>
+        <td class='col10'><%= simple_format(guest.guest_message) %></td>
+        <td class='col11'><%= simple_format(guest.allergy_comment) %></td>
+        <td class='col12' hidden><%= link_to '見', guest %></td>
+        <td class='col12' hidden><%= link_to '編', edit_guest_path(guest) %></td>
+        <td class='col12' hidden><%= link_to '削', guest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
