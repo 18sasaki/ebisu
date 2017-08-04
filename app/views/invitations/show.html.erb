@@ -1,46 +1,171 @@
-<h1><%= @guest.name %>様</h1>
-<h1>結婚披露宴へのご招待</h1>
-<h2>ともからのメッセージ：<%= @guest.tomo_message %></h2>
-<h2>えりからのメッセージ：<%= @guest.eri_message %></h2>
-<br>
-<h1>平成29年10月28日(土) 10時半～</h1>
-<h1><a href=http://www.qed.co.jp/restaurant/ target='_blank'>Q.E.D. CLUB</a></h1>
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.332004525976!2d139.70181031525783!3d35.64419098020287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b47097bd67d%3A0xf8a180a066f62e5d!2sQ.E.D.CLUB!5e0!3m2!1sja!2sjp!4v1500219085304" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-<br>
-<br>
-
-
-<% if @guest.attend_bit.nil? %>
-
-  <h1>下のフォームから、出欠席とメッセージを送信してね！</h1>
-
-<% else %>
-
-  <h2>・出欠席：<%= @guest.attend_bit ? "出席" : "欠席" %></h2>
-  <h2>・メッセージ：<%= @guest.guest_message %></h2>
-  <h2>で返信済です。</h2>
-  <h2>変更する場合は、以下のフォームから改めてどうぞ！</h2>
-
-<% end %>
-
-<%= form_tag("/invitations/#{@guest.id_hash}/reply", method: "post") do %>
-
-  <% if @guest.errors.any? %>
-    <div style='color:#ff0000'>出欠席を選択してね！</div>
-  <% end %>
-
-  <%= hidden_field_tag 'id_hash', params[:id_hash] %>
-
-  <div class="field" style="display:inline-flex">
-    <%= radio_button_tag :attend_bit, 1, @guest.attend_bit.present? %><%= label_tag 'attend_bit_1', '参加します' %>
-    <%= radio_button_tag :attend_bit, 0, !@guest.attend_bit.nil? && !@guest.attend_bit.present? %><%= label_tag 'attend_bit_0', '参加しません' %>
+<link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet">
+<div class="header">
+  <div class="inner">
+    <h1 class="logo"><%= @guest.name %> 様</h1>
+    <nav class="header_nav">
+      <ul>
+        <li><a href="#top">TOP</a></li>
+        <li><a href="#reception">RECEPTION</a></li>
+        <li><a href="#form">REPLY</a></li>
+      </ul>
+    </nav>
   </div>
+</div>
 
-  <div class="field">
-    <%= label_tag :guest_message, 'メッセージ' %>
-    <%= text_area_tag :guest_message %>
+<div id="container">
+  <div id="main">
+    <div id="conts">
+      <section class="top">
+        <h2 class="ttl01"><span class="icon">WE ARE GETTING MARRIED!</span></h2>
+        <div class="greeting">
+          <p>この度、結婚式を執り行うこととなりました。<br />
+          <br />
+          日頃お世話になっておりますみなさまに私どもの門出をお見守りいただきたく、ささやかながら小宴をもうけさせていただきました。ご多用中誠に恐縮ではございますがぜひご出席いただきたくご案内申し上げます。</p>
+        </div>
+
+        <ul class="unitCol2">
+          <li>
+            <section>
+              <div class="img">
+                <div class="pPhoto" style="background-image:url(/images/752.png)"></div>
+              </div>
+              <h3 class="name">Touma Tomoaki</h3>
+              <%= raw(@guest.tomo_message) %>
+            </section>
+          </li>
+          <li>
+            <section>
+              <div class="img">
+                <div class="pPhoto" style="background-image:url(/images/753.png)"></div>
+              </div>
+              <h3 class="name">Touma Eriko</h3>
+              <%= raw(@guest.eri_message) %>
+            </section>
+          </li>
+        </ul>
+      </section>
+    
+      <section class="event" id="reception">
+        <h2 class="ttl01"><span class="icon">THE WEDDING RECEPTION</span></h2>
+        <ul class="unitCol2 event_detail">
+          <li>
+            <section class="shopdata">
+              <div class="deco">
+                <p class="ttl">
+                  2017.10.28(Sat)<br>
+                  Main Ceremony<br>
+                  <span class="time">10:30</span><br>
+                  Wedding Party<br>
+                  <span class="time">11:00</span>
+                </p>
+              </div>
+              <p class="address">受付時間　10:00</p>
+              <p>Q.E.D CLUB<br>
+              東京都目黒区中目黒１丁目１−２９<br>
+              </p>
+              <p><a href="http://www.qed.co.jp/" target="_blank" class="url">http://www.qed.co.jp/</a></p>
+            </section>
+          </li>
+        </ul>
+        <iframe class="center_iframe" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3242.332004525976!2d139.70181031525783!3d35.64419098020287!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188b47097bd67d%3A0xf8a180a066f62e5d!2sQ.E.D.CLUB!5e0!3m2!1sja!2sjp!4v1500219085304" width="90%" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </section>
+    
+      <div class="invForm" id="form">
+        <div class="invForm-inner">
+          <div class="frame">
+            <section>
+              <div class="form_message">
+                <% if attend_type(@guest) == "none" %>
+                  お手数ですが出席情報のご登録をお願い申し上げます。<br />
+                  当日のお食事のご用意にあたりアレルギー等がある方はメッセージ欄にご記入くださいますようお願い申し上げます。
+                <% else %>
+                  <table>
+                    <tr>
+                      <td class="reply_column">
+                        出欠席 ： 
+                      </td>
+                      <td>
+                        <%= attend_type(@guest) == "attend" ? "出席" : "欠席" %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="reply_column">
+                        メッセージ ： 
+                      </td>
+                      <td>
+                        <%= simple_format(@guest.guest_message) %>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td class="reply_column">
+                        アレルギー ： 
+                      </td>
+                      <td>
+                        <%= simple_format(@guest.allergy_comment) %>
+                      </td>
+                    </tr>
+                  </table>
+                  <br />
+                  で登録されています。<br />
+                  変更も可能です。
+                <% end %>
+              </div>
+              
+              <div class="form">
+
+                <%= form_tag("/invitations/#{@guest.id_hash}/reply", method: "post") do %>
+
+                  <% if @guest.errors.any? %>
+                    <div style='color:#ff0000'>出欠席を選択してね！</div>
+                  <% end %>
+
+                  <%= hidden_field_tag 'id_hash', params[:id_hash] %>
+
+                  <fieldset>
+                    <dl>
+                      <dt><label for="attend_bit">ご出欠</label></dt>
+                      <dd>
+                        <div class="selectFrame">
+                          <select name="attend_bit" id="attend_bit">
+                            <option <%= 'selected' if attend_type(@guest) == "none" %>>選択してください</option>
+                            <option id="attend_bit_1" value="1" <%= 'selected' if attend_type(@guest) == "attend" %>>出席 / Attend</option>
+                            <option id="attend_bit_0" value="0" <%= 'selected' if attend_type(@guest) == "absent" %>>欠席 / Decline</option>
+                          </select>
+                        </div>
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt>
+                        <label for="guest_message">メッセージ</label>
+                      </dt>
+                      <dd>
+                        <textarea name="guest_message" id="guest_message" cols="24" rows="4" placeholder="メッセージを自由にご入力いただけます"><%= @guest.guest_message %></textarea>
+                      </dd>
+                    </dl>
+                    <dl>
+                      <dt>
+                        <label for="allergy_comment">アレルギー</label>
+                      </dt>
+                      <dd>
+                        <textarea name="allergy_comment" id="allergy_comment" cols="24" rows="4" placeholder="アレルギー等がある方はご記入ください"><%= @guest.allergy_comment %></textarea>
+                      </dd>
+                    </dl>
+                  </fieldset>
+                  <div class="formBtn">
+                    <button type="submit">登録</button>
+                  </div>
+                <% end %>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <%= submit_tag("返信する", class: 'btn btn-success') %>
-<% end %>
-
+</div>
+<div class="footer">
+  <span class="pagetop"><a href="#top"><img alt="ページトップへ" src="/images/cmn_icn_pagetop.png" /></a></span>
+  <ul id="footer-links">
+    <li><a href="mailto:18sasaki@gmail.com?subject=披露宴出欠について&amp;body=ご記入ください">問い合わせ</a></li>
+  </ul>
+</div>
