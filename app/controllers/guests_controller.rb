@@ -54,13 +54,22 @@ class GuestsController < ApplicationController
     end
   end
 
+  def csv_import
+    if params[:file]
+      num = Guest.csv_import(params[:file])
+      redirect_to :guests, notice: 'csvから一括登録しました。'
+    else
+      redirect_to :guests, alert: 'ファイルを選択してください'
+    end
+  end
+
   private
     def set_guest
       @guest = Guest.find(params[:id])
     end
 
     def guest_params
-      params.require(:guest).permit(:name, :post_number, :address_!, :address_2, :phone_number, :mail_address, :sex_bit, :child_bit, :invite_message, :host_bit, :tomo_message, :eri_message, :group_string)
+      params.require(:guest).permit(:name, :post_number, :address_1, :address_2, :phone_number, :mail_address, :sex_bit, :child_bit, :invite_message, :host_bit, :tomo_message, :eri_message, :group_string)
     end
 
     def basic

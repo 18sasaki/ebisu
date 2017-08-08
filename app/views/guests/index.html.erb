@@ -16,9 +16,27 @@
   });
 </script>
 
-<p id="notice"><%= notice %></p>
+<div style='color: green;'><%= notice %></div>
+<div style='color: red;'><%= alert %></div>
 
 <h1>招待客一覧</h1>
+
+<table>
+  <tr>
+    <td>個別追加：</td>
+    <td><%= button_to '追加', new_guest_path, method: :get %></td>
+  </tr>
+  <tr>
+    <td>一括追加：</td>
+    <td>
+      <%= form_tag csv_import_guests_path, multipart: true do %>
+        <%= submit_tag 'csv一括登録' %>
+        （<%= file_field_tag :file %>）
+      <% end %>
+    </td>
+  </tr>
+</table>
+<br/>
 
 <div id="select">
   <label><input type="checkbox" disabled checked></label>
@@ -26,6 +44,7 @@
   <label><input type="checkbox" disabled checked>名前</label>
   <label><input type="checkbox" >住所</label>
   <label><input type="checkbox" >電話番号</label>
+  <label><input type="checkbox" >メールアドレス</label>
   <label><input type="checkbox" checked>招待メッセージ</label>
   <label><input type="checkbox" >区分</label>
   <label><input type="checkbox" >グループ</label>
@@ -89,7 +108,3 @@
     <% end %>
   </tbody>
 </table>
-
-<br>
-
-<%= link_to '追加', new_guest_path %>
