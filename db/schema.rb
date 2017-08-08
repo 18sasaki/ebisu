@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170804074514) do
+ActiveRecord::Schema.define(version: 20170808034936) do
 
   create_table "guests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "id_hash",                                       null: false
     t.string   "name",                                          null: false
     t.string   "post_number",                                   null: false
-    t.string   "address",                                       null: false
+    t.string   "address_1",                                     null: false
     t.string   "phone_number"
     t.boolean  "sex_bit",                                       null: false
     t.boolean  "child_bit",                     default: false, null: false
@@ -29,6 +29,9 @@ ActiveRecord::Schema.define(version: 20170804074514) do
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
     t.text     "allergy_comment", limit: 65535
+    t.string   "mail_address"
+    t.string   "address_2"
+    t.string   "group_string"
   end
 
 end

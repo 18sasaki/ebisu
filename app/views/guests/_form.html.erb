@@ -26,12 +26,24 @@
     <%= f.label :post_number, '住所' %>
     〒<%= f.text_field :post_number %>
     <br />
-    <%= f.text_field :address %>
+    <%= f.text_field :address_1 %>
+    <br />
+    <%= f.text_field :address_2 %>
   </div>
 
   <div class="field">
     <%= f.label :phone_number, '電話番号' %>
     <%= f.text_field :phone_number %>
+  </div>
+
+  <div class="field">
+    <%= f.label :mail_address, 'メールアドレス' %>
+    <%= f.text_field :mail_address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :group_string, 'グループ' %>
+    <%= f.text_field :group_string %>
   </div>
 
   <div class="field">

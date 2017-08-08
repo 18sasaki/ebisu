@@ -17,7 +17,17 @@
 
 <p>
   <strong>Address:</strong>
-  <%= @guest.address %>
+  <%= @guest.address_1 %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @guest.address_2 %>
+</p>
+
+<p>
+  <strong>MailAddress:</strong>
+  <%= @guest.mail_address %>
 </p>
 
 <p>
@@ -63,6 +73,11 @@
 <p>
   <strong>Guest message:</strong>
   <%= @guest.guest_message %>
+</p>
+
+<p>
+  <strong>Allergy Comment:</strong>
+  <%= @guest.allergy_comment %>
 </p>
 
 <%= link_to 'Edit', edit_guest_path(@guest) %> |
