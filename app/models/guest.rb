@@ -2,14 +2,27 @@ class Guest < ApplicationRecord
 	validates :attend_bit, inclusion: { in: [true, false] }, on: :by_guest
 
   def self.csv_import(file)
+  	result_hash = {success: 0, duplication: 0, error: 0, error_message: []}
     CSV.foreach(file.path, headers: true) do |row|
-      # TODO: 名寄せか上書きかはじくか
-      # TODO: csvファイルのheaderの最初の列の先頭に「・」が入ってエラーになる件が不明のまま
-      guest = self.new
-      guest.attributes = row.to_hash.slice(*updatable_attributes)
-      guest.id_hash = Digest::MD5.hexdigest('tomo' + guest.name + 'eri')
-      guest.save!
+    	begin
+	      # TODO: csvファイルのheaderの最初の列の先頭に「・」が入ってエラーになる件が不明のまま
+	      # TODO: 名寄せか上書きかはじくか
+	      # TODO: 上書きフラグ？
+	      if Guest.find_by(name: row['name'])
+		    	result_hash[:duplication] += 1
+		    else
+		      guest = self.new
+		      guest.attributes = row.to_hash.slice(*updatable_attributes)
+		      guest.id_hash = Digest::MD5.hexdigest('tomo' + guest.name + 'eri')
+		      guest.save!
+		    	result_hash[:success] += 1
+		    end
+	    rescue => e
+	    	result_hash[:error_message] << e
+	    	result_hash[:error] += 1
+	    end
     end
+    result_hash
   end
 
   def self.updatable_attributes

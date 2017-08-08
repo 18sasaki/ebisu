@@ -56,8 +56,21 @@ class GuestsController < ApplicationController
 
   def csv_import
     if params[:file]
-      num = Guest.csv_import(params[:file])
-      redirect_to :guests, notice: 'csvから一括登録しました。'
+      result_hash = Guest.csv_import(params[:file])
+
+      if result_hash[:success] > 0
+        flash[:success] = "#{result_hash[:success]}件を登録しました。"
+      end
+
+      if result_hash[:duplication] > 0
+        flash[:duplication] = "#{result_hash[:duplication]}件名前が重複していて登録できませんでした。"
+      end
+
+      if result_hash[:error] > 0
+        flash[:error] = "#{result_hash[:error]}件エラーで登録できませんでした。(#{result_hash[:error_message]})"
+      end
+
+      redirect_to :guests
     else
       redirect_to :guests, alert: 'ファイルを選択してください'
     end

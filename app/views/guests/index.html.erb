@@ -16,8 +16,9 @@
   });
 </script>
 
-<div style='color: green;'><%= notice %></div>
-<div style='color: red;'><%= alert %></div>
+<div style='color: green;'><%= flash[:success] %></div>
+<div style='color: orange;'><%= flash[:duplication] %></div>
+<div style='color: red;'><%= flash[:error] %></div>
 
 <h1>招待客一覧</h1>
 
