@@ -40,15 +40,15 @@
 <br/>
 
 <div id="select">
-  <label><input type="checkbox" disabled checked></label>
+  <label><input type="checkbox" disabled checked>（未）</label>
   <label><input type="checkbox" checked>出欠</label>
   <label><input type="checkbox" disabled checked>名前</label>
   <label><input type="checkbox" >住所</label>
   <label><input type="checkbox" >電話番号</label>
   <label><input type="checkbox" >メールアドレス</label>
-  <label><input type="checkbox" checked>招待メッセージ</label>
-  <label><input type="checkbox" >区分</label>
-  <label><input type="checkbox" >グループ</label>
+  <label><input type="checkbox" >招待メッセージ（未）</label>
+  <label><input type="checkbox" >区分（未）</label>
+  <label><input type="checkbox" >グループ（未）</label>
   <label><input type="checkbox" checked>ともメッセージ</label>
   <label><input type="checkbox" checked>えりメッセージ</label>
   <label><input type="checkbox" checked>ゲストからのメッセージ</label>
@@ -65,7 +65,7 @@
       <th class='col4' hidden>住所</th>
       <th class='col5' hidden>電話番号</th>
       <th class='col6' hidden>メールアドレス</th>
-      <th class='col7'>招待メッセージ</th>
+      <th class='col7' hidden>招待メッセージ</th>
       <th class='col8' hidden>区分</th>
       <th class='col9' hidden>グループ</th>
       <th class='col10'>ともメッセージ</th>
@@ -95,7 +95,7 @@
         <td class='col4' hidden>〒<%= guest.post_number %><br /><%= guest.address_1 %><br /><%= guest.address_2 %></td>
         <td class='col5' hidden><%= guest.phone_number %></td>
         <td class='col6' hidden><%= guest.mail_address %></td>
-        <td class='col7'><%= simple_format(guest.invite_message) %></td>
+        <td class='col7' hidden><%= simple_format(guest.invite_message) %></td>
         <td class='col8' hidden><%= guest.host_bit ? 'とも' : 'えり' %></td>
         <td class='col9' hidden><%= guest.group_string %></td>
         <td class='col10'><%= simple_format(guest.tomo_message) %></td>
