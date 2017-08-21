@@ -53,6 +53,7 @@
   <label><input type="checkbox" checked>えりメッセージ</label>
   <label><input type="checkbox" checked>ゲストからのメッセージ</label>
   <label><input type="checkbox" checked>アレルギー</label>
+  <label><input type="checkbox" >URL</label>
   <label><input type="checkbox" >操作</label>
 </div>
 
@@ -72,7 +73,8 @@
       <th class='col11'>えりメッセージ</th>
       <th class='col12'>ゲストからのメッセージ</th>
       <th class='col13'>アレルギー</th>
-      <th class='col14' colspan="3" hidden>操作</th>
+      <th class='col14' hidden>URL</th>
+      <th class='col15' colspan="3" hidden>操作</th>
     </tr>
   </thead>
 
@@ -102,9 +104,10 @@
         <td class='col11'><%= simple_format(guest.eri_message) %></td>
         <td class='col12'><%= simple_format(guest.guest_message) %></td>
         <td class='col13'><%= simple_format(guest.allergy_comment) %></td>
-        <td class='col14' hidden><%= link_to '見', guest %></td>
-        <td class='col14' hidden><%= link_to '編', edit_guest_path(guest) %></td>
-        <td class='col14' hidden><%= link_to '削', guest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td class='col14' hidden><%= "#{request.host}/invitations/#{guest.id_hash}" %></td>
+        <td class='col15' hidden><%= link_to '見', guest %></td>
+        <td class='col15' hidden><%= link_to '編', edit_guest_path(guest) %></td>
+        <td class='col15' hidden><%= link_to '削', guest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
