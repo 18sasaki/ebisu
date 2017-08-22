@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808034936) do
+ActiveRecord::Schema.define(version: 20170822063557) do
 
   create_table "guests", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "id_hash",                                       null: false
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 20170808034936) do
     t.string   "mail_address"
     t.string   "address_2"
     t.string   "group_string"
+    t.boolean  "reception_bit"
+    t.string   "short_url"
   end
 
 end

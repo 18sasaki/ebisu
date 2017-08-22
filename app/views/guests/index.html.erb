@@ -93,6 +93,7 @@
         <td class='col3'>
           <%= link_to guest.name, "/invitations/#{guest.id_hash}" %>
           <%= guest.child_bit ? '※' : '' %>
+          <%= guest.reception_bit ? '受' : '' %>
         </td>
         <td class='col4' hidden>〒<%= guest.post_number %><br /><%= guest.address_1 %><br /><%= guest.address_2 %></td>
         <td class='col5' hidden><%= guest.phone_number %></td>
@@ -104,7 +105,7 @@
         <td class='col11'><%= simple_format(guest.eri_message) %></td>
         <td class='col12'><%= simple_format(guest.guest_message) %></td>
         <td class='col13'><%= simple_format(guest.allergy_comment) %></td>
-        <td class='col14' hidden><%= "#{request.host}/invitations/#{guest.id_hash}" %></td>
+        <td class='col14' hidden><%= guest.short_url %></td>
         <td class='col15' hidden><%= link_to '見', guest %></td>
         <td class='col15' hidden><%= link_to '編', edit_guest_path(guest) %></td>
         <td class='col15' hidden><%= link_to '削', guest, method: :delete, data: { confirm: 'Are you sure?' } %></td>

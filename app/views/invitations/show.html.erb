@@ -62,7 +62,8 @@
                   <span class="time">11:00</span>
                 </p>
               </div>
-              <p class="address">受付時間　10:00</p>
+              <p>受付時間　10:00</p>
+              <% if @guest.reception_bit %><p style='color: red;'>受付の方はお手数ですが9:15までにお越し下さい</p><% end %>
               <p>Q.E.D CLUB<br>
               東京都目黒区中目黒１丁目１−２９<br>
               </p>

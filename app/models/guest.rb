@@ -17,7 +17,6 @@ class Guest < ApplicationRecord
 		    # 	result_hash[:success] += 1
 		    # end
 	      guest = Guest.find_by(name: row['name']) || self.new
-p guest
 	      guest.attributes = row.to_hash.slice(*updatable_attributes)
 	      guest.id_hash = Digest::MD5.hexdigest('tomo' + guest.name + 'eri')
 	      guest.save!
@@ -32,7 +31,7 @@ p guest
 
   def self.updatable_attributes
   	# table上のカラムの順番厳守かと思ったけど違った。
-    ['name', 'post_number', 'address_1', 'phone_number', 'sex_bit', 'child_bit', 'invite_message', 'host_bit', 'tomo_message', 'eri_message', 'mail_address', 'address_2', 'group_string']
+    ['name', 'post_number', 'address_1', 'phone_number', 'sex_bit', 'child_bit', 'invite_message', 'host_bit', 'tomo_message', 'eri_message', 'mail_address', 'address_2', 'group_string', 'reception_bit', 'short_url']
   end
 end
 
